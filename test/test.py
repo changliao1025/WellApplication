@@ -5,12 +5,36 @@ Created on Sat Jan 23 13:03:00 2016
 @author: p
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
-import wellapplication as wa
+#import wellapplication as wa
 import pandas as pd
 import matplotlib
 import sys
 sys.path.append('../')
 import numpy as np
+import os #operate folder
+import sys
+import numpy as np
+
+#maybe not needed
+
+
+import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
+
+#import library
+sSystem_paths = os.environ['PATH'].split(os.pathsep)
+sys.path.extend(sSystem_paths)
+
+print(os.environ['PATH'])
+print('Start printing path:')
+print(sSystem_paths)
+print('End printing path:')
+#import global variable
+from eslib.system.define_global_variables import *
+sPath_wellapplication_python = sWorkspace_code +  slash + 'python' + slash + 'usgs' + slash + 'WellApplication'
+sys.path.append(sPath_wellapplication_python)
+import wellapplication as wa
 
 m = wa.Meso(token='demotoken')
 
@@ -196,3 +220,28 @@ def test_mk_ts():
     usgsP = pd.read_csv('test/usgsP.csv')
     var = wa.MannKendall.mk_ts(usgsP, 'PO4', 'month', 'year',0.05)
     assert var[0] == -87.0
+
+if __name__ == '__main__':
+    test_getelev()
+    test_gethuc()
+    test_USGSID()
+    test_nwis()
+    test_nwis_gw()
+    test_fdc()
+    test_mktest()
+    test_new_xle_imp()
+    test_xle_head_table()
+    test_dataendclean()
+    test_smoother()
+    test_hourly_resample()
+    testvars()
+    testmetadata()
+    test_WQP()
+    test_WQ2()
+    test_well_baro_merge()
+    test_getwellid()
+    test_barodistance()
+    test_jumpfix()
+    test_gantt()
+    test_get_info()
+    test_mk_ts()
